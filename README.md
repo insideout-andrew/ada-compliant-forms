@@ -35,8 +35,8 @@ Supported validation rules
 ## Examples
 
 ```html
-<!-- build a form -->
 <ada-form id="simple-form">
+  <h2>Simple Example Form</h2>
   <ada-input 
     label="Full Name" 
     type="text" 
@@ -47,13 +47,8 @@ Supported validation rules
   <ada-input type="submit" value="Submit"></ada-input>
 </ada-form>
 
-<!-- handle collecting the information... or add method/action to the form and let your server handle everything -->
-<script>
-  document.querySelector('#simple-form').addEventListener('submit', e => alert(`Hello ${e.detail.fullName}`)
-</script>
-
-
 <ada-form id="complex-form">
+  <h2>Complex Example Form</h2>
   <ada-input label="Full Name" type="text" name="fullName" rules="required|minLength:2" placeholder="John Smith"></ada-input>
   <ada-input label="Your Email" type="email" name="email" rules="required|email" placeholder="email@mail.com"></ada-input>
   <ada-input label="Choose a number greater than 2 but less than 8" type="number" name="number" rules="required|min:3|max:7" placeholder="5"></ada-input>
@@ -81,6 +76,12 @@ Supported validation rules
   <ada-input type="submit" value="Submit"></ada-input>
   <button  class="button" id="throw-error">Add Custom Error</button>
 </ada-form>
+
+
+<!-- handle collecting the information... or add method/action to the form and let your server handle everything -->
+<script>
+  document.querySelector('#simple-form').addEventListener('submit', e => alert(`Hello ${e.detail.fullName}`)
+</script>
 ```
 
 ## Contributing

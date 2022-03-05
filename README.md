@@ -37,7 +37,8 @@ Supported validation rules:
 | Regular Expression | `rules="regex:^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"` | This value must match the supplied regex. |
 
 ## Anatomy
-### <ada-input>
+
+<ada-input>
 
 Use these within an `<ada-form>` element to create inputs as needed.
 
@@ -49,7 +50,7 @@ Use these within an `<ada-form>` element to create inputs as needed.
 | placeholder | Input placeholder |
 | rules | Validation rules (if needed). Multiple rules should be separated with a pipe |
 
-### <ada-option>
+<ada-option>
 
 Use these within an `<ada-input type="select|checkbox|radio">` to create options as needed.
 

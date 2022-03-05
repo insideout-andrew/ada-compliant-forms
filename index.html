@@ -1,0 +1,166 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>ADA Compliant Forms</title>
+  <meta name="description" content="Create forms compliant with the American Disabilities Act with no effort at all... seriously it is easier than HTML.">
+  <meta name="author" content="Andrew Vickerman">
+
+  <meta property="og:title" content="ADA Compliant Forms">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https:/andrewvickerman.com/">
+  <meta property="og:description" content="Create forms compliant with the American Disabilities Act with no effort at all... seriously it is easier than HTML.">
+
+  <link rel="icon" href="./favicon.ico">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+
+  <link rel="stylesheet" href="./style.css?v=1.0">
+
+</head>
+
+<body>
+  <main class="wrapper">
+    <h1>ADA Forms</h1>
+    <p>Create forms compliant with the American Disabilities Act with no effort at all... seriously it is easier than HTML. All you need to do is include the JS and then start building your forms.</p>
+
+    <h2>What's available</h2>
+    <p>Supported input types:</p>
+    <p>text, email, number, checkbox, radio, textarea, password, file, date, select</p>
+    <br>
+    <p>Supported validation rules:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Example</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Required</td>
+          <td>rules="required"</td>
+          <td>Some value must be preset</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>rules="email"</td>
+          <td>Value must match email regex. Note: you should still use stronger server side validation</td>
+        </tr>
+        <tr>
+          <td>Min</td>
+          <td>rules="min:3"</td>
+          <td>Value must be at least this number</td>
+        </tr>
+        <tr>
+          <td>Max</td>
+          <td>rules="max:3"</td>
+          <td>Value cannot be more than this number</td>
+        </tr>
+        <tr>
+          <td>Min Length</td>
+          <td>rules="minLength:3"</td>
+          <td>Value length must be at least this number</td>
+        </tr>
+        <tr>
+          <td>Max Length</td>
+          <td>rules="maxLength:3"</td>
+          <td>Value length cannot be more than this number</td>
+        </tr>
+        <tr>
+          <td>Same As/Confirm</td>
+          <td>rules="sameAs:inputName"</td>
+          <td>This value must match the set value. This is nice for confirming passwords.</td>
+        </tr>
+        <tr>
+          <td>Mime</td>
+          <td>rules="mime:image/*"</td>
+          <td>This file must match this mime type. This only works for file inputs. You can use a * as a wildcard.</td>
+        </tr>
+        <tr>
+          <td>Date Before</td>
+          <td>rules="dateBefore:1970-01-01"</td>
+          <td>This value must be less than this date. This only works for date inputs.</td>
+        </tr>
+        <tr>
+          <td>Date After</td>
+          <td>rules="dateAfter:1970-01-01"</td>
+          <td>This value must be greater than this date. This only works for date inputs.</td>
+        </tr>
+        <tr>
+          <td>Regular Expression</td>
+          <td>rules="regex:^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"</td>
+          <td>This value must match the supplied regex.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Examples</h2>
+
+    <ada-form id="simple-form">
+      <pre>
+&#x3C;ada-form id=&#x22;simple-form&#x22;&#x3E;
+  &#x3C;ada-input 
+    type=&#x22;text&#x22; 
+    label=&#x22;Full Name&#x22; 
+    name=&#x22;fullName&#x22; 
+    rules=&#x22;required&#x22; 
+    placeholder=&#x22;John Smith&#x22;
+  &#x3E;&#x3C;/ada-input&#x3E;
+  &#x3C;ada-input type=&#x22;submit&#x22; value=&#x22;Submit&#x22;&#x3E;&#x3C;/ada-input&#x3E;
+&#x3C;/ada-form&#x3E;
+
+&#x3C;script&#x3E;
+  document.querySelector('#simple-form').addEventListener('submit', e => alert(`Hello ${e.detail.fullName}`))
+&#x3C;/script&#x3E;</pre>
+      <ada-input label="Full Name" type="text" name="fullName" rules="required" placeholder="John Smith"></ada-input>
+      <ada-input type="submit" value="Submit"></ada-input>
+    </ada-form>
+    <script>document.querySelector('#simple-form').addEventListener('submit', e => alert(`Hello ${e.detail.fullName}`))</script>
+
+    <ada-form id="complex-form">
+      <ada-input label="Full Name" type="text" name="fullName" rules="required|minLength:2" placeholder="John Smith"></ada-input>
+      <ada-input label="Your Email" type="email" name="email" rules="required|email" placeholder="email@mail.com"></ada-input>
+      <ada-input label="Choose a number greater than 2 but less than 8" type="number" name="number" rules="required|min:3|max:7" placeholder="5"></ada-input>
+      <ada-input label="Choose something" type="select" name="thing" rules="required">
+        <ada-option value="" label="--"></ada-option>
+        <ada-option value="something" label="Something"></ada-option>
+        <ada-option value="something-else" label="Something Else"></ada-option>
+        <ada-option value="another-thing" label="Another Thing"></ada-option>
+      </ada-input>
+      <ada-input label="Choose 2 items" type="checkbox" name="items" rules="required|min:2|max:2">
+        <ada-option value="something" label="Something"></ada-option>
+        <ada-option value="something-else" label="Something Else"></ada-option>
+        <ada-option value="another-thing" label="Another Thing"></ada-option>
+      </ada-input>
+      <ada-input label="Choose 1 item" type="radio" name="items2" rules="required">
+        <ada-option value="something" label="Something"></ada-option>
+        <ada-option value="something-else" label="Something Else"></ada-option>
+        <ada-option value="another-thing" label="Another Thing"></ada-option>
+      </ada-input>
+      <ada-input label="Message" type="textarea" name="message" rules="required|minLength:10|maxLength:100" placeholder="Leave me a nice message"></ada-input>
+      <ada-input label="Password" type="password" name="password" rules="required|regex:^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" placeholder="Enter your password"></ada-input>
+      <ada-input label="Confirm Password" type="password" name="confirmPassword" rules="required|sameAs:password" placeholder="Confirm your password"></ada-input>
+      <ada-input label="Upload an Image" type="file" name="image" rules="required|mime:image/*"></ada-input>
+      <ada-input label="Date Before" type="date" name="date before" rules="required|dateBefore:2022-03-7|dateAfter:2022-03-01"></ada-input>
+      <ada-input type="submit" value="Submit"></ada-input>
+      <button  class="button" id="throw-error">Add Custom Error</button>
+    </ada-form>
+    <script>
+      document.querySelector('#throw-error').addEventListener('click', e => {
+        e.preventDefault()
+        const emailInput = document.querySelector('ada-input[name="email"]')
+        emailInput.setError('Uh oh, that email doesn\'t work for some reason')
+      })
+      document.querySelector('#complex-form').addEventListener('submit', e => console.log(e.detail))
+    </script>
+
+  </main>
+
+  <script src="./public/main.js"></script>
+</body>
+</html>

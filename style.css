@@ -1,0 +1,164 @@
+:root {
+  --black: #121212;
+  --white: #f9f9f9;
+  --dark-gray: #353535;
+  --blue: #2176AE;
+  --light-blue: #57B8FF;
+  --light-blue: #57B8FF;
+  --yellow: #FBB13C;
+  --orange: #FE6847;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(35deg, var(--yellow), var(--orange));
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 2rem 0;
+  position: relative;
+  padding: 0.5rem 0 0.5rem 1rem;
+}
+
+h1:before,
+h2:before,
+h3:before,
+h4:before,
+h5:before,
+h6:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  height: 100%;
+  border-left: 6px solid var(--blue);
+  top: 0.5rem;
+}
+
+h1:after,
+h2:after,
+h3:after,
+h4:after,
+h5:after,
+h6:after {
+  content: " ";
+  position: absolute;
+  left: -6px;
+  height: 100%;
+  border-left: 6px solid var(--light-blue);
+  top: -0.5rem;
+}
+
+p {
+  line-height: 1.6; 
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid var(--dark-gray);
+}
+
+th {
+  background: var(--blue);
+}
+
+tr:nth-of-type(odd) {
+  background: var(--dark-gray);
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5rem;
+  vertical-align: top;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  border: 1px solid;
+  padding: 0.5rem;
+  font-family: inherit;
+}
+
+input[type="submit"] {
+  border: 2px solid;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  background: var(--blue);
+  color: var(--white);
+  transition: 250ms;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  filter: brightness(1.25)
+}
+
+form {
+  padding: 1rem;
+  width: 768px;
+  max-width: 100%;
+  margin: 0 auto 2rem;
+  border: 6px solid var(--light-blue);
+  background: var(--white);
+  color: var(--black);
+}
+
+pre {
+  background: var(--blue);
+  color: var(--white);
+  padding: 0.5rem;
+  font-family: 'Courier New', Courier, monospace;
+  overflow: auto;
+  margin-bottom: 2rem;
+}
+
+ada-input {
+  display: block;
+  margin-bottom: 2rem;
+}
+
+ada-option {
+  display: flex;
+  align-items: center;
+}
+ada-option label {
+  margin: 0 0 0 0.5rem;
+}
+
+.ada-input-error {
+  color: red;
+  list-style: none;
+  margin: 0.5rem 0;
+  padding: 0;
+}
+
+.wrapper {
+  margin: 100px auto;
+  width: 1024px;
+  max-width: 90%;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--black);
+  color: var(--white);
+  padding: 3rem;
+  box-shadow: 4px 8px 15px rgba(0,0,0,0.35)
+}

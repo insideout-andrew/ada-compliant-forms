@@ -1,6 +1,6 @@
 {
   "name": "ada-compliant-forms",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "browser": "public/main.js",
   "scripts": {

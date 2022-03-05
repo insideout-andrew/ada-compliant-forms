@@ -2,7 +2,7 @@
   "name": "ada-compliant-forms",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "browser": "public/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "NODE_ENV=development webpack --config webpack.config.js & http-server ./ -s & node -e \"console.log('Visit: http://127.0.0.1:8080/')\"",

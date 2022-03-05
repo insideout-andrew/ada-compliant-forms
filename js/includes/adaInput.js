@@ -46,6 +46,10 @@ class adaInput extends HTMLElement {
       default:
         this._createDefaultInput()
     }
+
+    if(this.hasAttribute('description')){
+      this._createDescription()
+    }
     
     requestAnimationFrame(() => {
       this.querySelectorAll('input, textarea, select').forEach(input => {
@@ -53,6 +57,13 @@ class adaInput extends HTMLElement {
         input.addEventListener('input', e => this.dispatchEvent(new CustomEvent('interact', { detail: e.target.value })))
       })
     })
+  }
+
+  _createDescription(){
+    const p = document.createElement('p')
+    p.innerText = this.getAttribute('description')
+    p.classList.add('ada-input--description')
+    this.append(p)
   }
   
   _createTextarea(){
@@ -210,19 +221,25 @@ class adaInput extends HTMLElement {
             break
           case 'dateBefore':
             if(!this._validateDateBefore(value, modifier)){
-              errors.push('This field must be before ' + modifier)
+              errors.push('This field must be before or equal to ' + modifier)
               isValid = false
             }
             break
           case 'dateAfter':
             if(!this._validateDateAfter(value, modifier)){
-              errors.push('This field must be after ' + modifier)
+              errors.push('This field must be after or equal to ' + modifier)
               isValid = false
             }
             break
           case 'regex':
             if(!this._validateRegex(value, modifier)){
               errors.push('This field is invalid')
+              isValid = false
+            }
+            break
+          case 'url':
+            if(!this._validateURL(value, modifier)){
+              errors.push('This field is not a valid URL')
               isValid = false
             }
             break
@@ -249,6 +266,12 @@ class adaInput extends HTMLElement {
     }
   }
   
+
+  _validateURL(value){
+    var res = value.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
+    return (res !== null)
+  }
+
   _validateEmail(value){
     return !value ? true : /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value)
   }
@@ -256,13 +279,13 @@ class adaInput extends HTMLElement {
   _validateDateBefore(value, checkAgainst){
     var checkDate = new Date(checkAgainst)
     var setDate = new Date(value + ' 00:00:00')
-    return !value ? true : checkDate > setDate
+    return !value ? true : checkDate >= setDate
   }
   
   _validateDateAfter(value, checkAgainst){
     var checkDate = new Date(checkAgainst)
     var setDate = new Date(value + ' 00:00:00')
-    return !value ? true : checkDate < setDate
+    return !value ? true : checkDate <= setDate
   }
 
   _validateRegex(value, reg){
@@ -319,7 +342,7 @@ class adaInput extends HTMLElement {
  }
   
   _setErrors(errors, forceFocus = false){
-    const prevErrors = this.querySelectorAll('.ada-input-error') || []
+    const prevErrors = this.querySelectorAll('.ada-input--error') || []
     prevErrors.forEach(err => err.remove())
     
     if(errors.length){
@@ -333,7 +356,7 @@ class adaInput extends HTMLElement {
     if(errors.length){
       const errorContainer = document.createElement('ul')
       errorContainer.id = `${this.id}-errors`
-      errorContainer.classList.add('ada-input-error')
+      errorContainer.classList.add('ada-input--error')
       errors.forEach(error => {
         const el = document.createElement('li')
         el.innerText = error

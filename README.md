@@ -2,15 +2,14 @@
 
 Create forms compliant with the American Disabilities Act with no effort at all... seriously it is easier than HTML. All you need to do is include the JS and then start building your forms.
 
-It is fast, simple, lightweight (<20kb), and will allow you to build robust forms with live error handling without ever touching a line of Javascript.
-
-
+It is fast, simple, lightweight (<20kb), there are absolutely NO CSS associated with is, and will allow you to build robust ADA-compliant forms with live error handling without ever touching a line of Javascript.
 
 ## What's available
 
 Supported input types:
 - text
 - email
+- url
 - number
 - select
 - checkbox
@@ -25,7 +24,8 @@ Supported validation rules:
 | Name | Example | Description |
 | --- | --- | --- |
 | Required | `rules="required"` | Some value must be preset |
-| Email | `rules="email"` | Value must match email regex. Note: you should still use stronger server side validation |
+| Email | `rules="email"` | Value must match email regex. |
+| URL | `rules="url"` | Value must match url regex. |
 | Min | `rules="min:3"` | Value must be at least this number |
 | Max | `rules="max:3"` | Value cannot be more than this number |
 | Min Length | `rules="minLength:3"` | Value length must be at least this number |
@@ -35,6 +35,20 @@ Supported validation rules:
 | Date Before | `rules="dateBefore:1970-01-01"` | This value must be less than this date. This only works for date inputs. |
 | Date After | `rules="dateAfter:1970-01-01"` | This value must be greater than this date. This only works for date inputs. |
 | Regular Expression | `rules="regex:^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"` | This value must match the supplied regex. |
+
+## Usage
+
+Install in your project using npm
+
+```
+npm install ada-compliant-forms
+```
+
+In your javascript file, simply include the library
+
+```
+import 'ada-compliant-forms'
+```
 
 ## Anatomy
 
@@ -71,9 +85,10 @@ Use these within an `<ada-input type="select|checkbox|radio">` to create options
   <h2>Simple Example Form</h2>
   <ada-input 
     label="Full Name" 
+    description="Please enter your full name"
     type="text" 
     name="fullName" 
-    rules="required" 
+    rules="required|minLength:4" 
     placeholder="John Smith"
   ></ada-input>
   <ada-input type="submit" value="Submit"></ada-input>
@@ -113,7 +128,7 @@ Use these within an `<ada-input type="select|checkbox|radio">` to create options
 
 
 
-<!-- handle collecting the information... or add method/action to the form and let your server handle everything -->
+<!-- handle collecting the information... or add method/action to the <ada-form> and let your server handle everything -->
 <script>
   document.querySelector('#simple-form').addEventListener('submit', e => alert(`Hello ${e.detail.fullName}`)
 

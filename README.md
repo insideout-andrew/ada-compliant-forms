@@ -38,6 +38,11 @@ Supported validation rules:
 
 ## Anatomy
 
+### `<ada-form>`
+
+Use this to wrap all inputs
+
+
 ### `<ada-input>`
 
 Use these within an `<ada-form>` element to create inputs as needed.

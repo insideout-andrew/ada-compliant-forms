@@ -81,6 +81,14 @@ Supported validation rules
 <!-- handle collecting the information... or add method/action to the form and let your server handle everything -->
 <script>
   document.querySelector('#simple-form').addEventListener('submit', e => alert(`Hello ${e.detail.fullName}`)
+
+  document.querySelector('#complex-form').addEventListener('submit', e => console.log(e.detail))
+  
+  document.querySelector('#throw-error').addEventListener('click', e => {
+    e.preventDefault()
+    const emailInput = document.querySelector('ada-input[name="email"]')
+    emailInput.setError('Uh oh, that email doesn\'t work for some reason')
+  })
 </script>
 ```
 

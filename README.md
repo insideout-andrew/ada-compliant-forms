@@ -153,8 +153,12 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Development
 Run `http-server ./index.html` to view the test page
+
 Run `npm run dev` to watch for chanages while working
+
 Run `npm run prod` to minify for production
+
+Run `np` to publish to git and npm
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

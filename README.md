@@ -2,6 +2,10 @@
 
 Create forms compliant with the American Disabilities Act with no effort at all... seriously it is easier than HTML. All you need to do is include the JS and then start building your forms.
 
+It is fast, simple, lightweight (<20kb), and will allow you to build robust forms with live error handling without ever touching a line of Javascript.
+
+
+
 ## What's available
 
 Supported input types:
@@ -16,7 +20,7 @@ Supported input types:
 - file
 - date
 
-Supported validation rules
+Supported validation rules:
 
 | Name | Example | Description |
 | --- | --- | --- |
@@ -32,6 +36,28 @@ Supported validation rules
 | Date After | `rules="dateAfter:1970-01-01"` | This value must be greater than this date. This only works for date inputs. |
 | Regular Expression | `rules="regex:^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"` | This value must match the supplied regex. |
 
+## Anatomy
+### <ada-input>
+
+Use these within an `<ada-form>` element to create inputs as needed.
+
+| Parameter | Description |
+| --- | --- |
+| type | Input type |
+| name | Input name |
+| label | Input label |
+| placeholder | Input placeholder |
+| rules | Validation rules (if needed). Multiple rules should be separated with a pipe |
+
+### <ada-option>
+
+Use these within an `<ada-input type="select|checkbox|radio">` to create options as needed.
+
+| Parameter | Description |
+| --- | --- |
+| value | Option value |
+| label | Option label |
+
 ## Examples
 
 ```html
@@ -46,6 +72,8 @@ Supported validation rules
   ></ada-input>
   <ada-input type="submit" value="Submit"></ada-input>
 </ada-form>
+
+
 
 <ada-form id="complex-form">
   <h2>Complex Example Form</h2>
@@ -76,6 +104,7 @@ Supported validation rules
   <ada-input type="submit" value="Submit"></ada-input>
   <button  class="button" id="throw-error">Add Custom Error</button>
 </ada-form>
+
 
 
 <!-- handle collecting the information... or add method/action to the form and let your server handle everything -->

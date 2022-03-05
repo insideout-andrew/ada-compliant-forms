@@ -5,11 +5,11 @@
   "browser": "public/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\"",
-    "dev": "NODE_ENV=development webpack --config webpack.config.js & http-server ./ -s & node -e \"console.log('Visit: http://127.0.0.1:8080/')\"",
+    "dev": "NODE_ENV=development webpack --config webpack.config.js",
     "prod": "NODE_ENV=production webpack --config webpack.config.js"
   },
   "files": [
-    "public/*",
+    "public/main.js",
     "js/includes/*"
   ],
   "author": "",

@@ -4,7 +4,8 @@ module.exports = {
   mode: process.env.NODE_ENV,
   watch: process.env.NODE_ENV == 'development',
   entry: {
-    main: path.resolve(__dirname, 'js/main.js')
+    main: path.resolve(__dirname, 'js/main.js'),
+    test: path.resolve(__dirname, 'js/test.js')
   },
   output: {
     path: path.resolve(__dirname, 'public/'),

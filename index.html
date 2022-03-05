@@ -61,15 +61,6 @@
     <button  class="button" id="throw-error">Add Custom Error</button>
   </ada-form>
 
-  <script>
-    document.querySelector('#throw-error').addEventListener('click', e => {
-      e.preventDefault()
-      const emailInput = document.querySelector('ada-input[name="email"]')
-      emailInput.setError('Uh oh, that email doesn\'t work for some reason')
-    })
-    document.querySelector('#complex-form').addEventListener('submit', e => console.log(e.detail))
-  </script>
-
-  <script src="./public/main.js"></script>
+  <script src="./public/test.js"></script>
 </body>
 </html>

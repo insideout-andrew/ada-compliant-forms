@@ -145,5 +145,10 @@ Use these within an `<ada-input type="select|checkbox|radio">` to create options
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
+## Development
+Run `http-server ./index.html` to view of the test page
+Run `npm run dev` to watch for chanages while working
+Run `npm run prod` to minify for production
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

@@ -1,12 +1,12 @@
 # Ada Compliant Forms
 
-Create forms compliant with the American Disabilities Act with no effort at all... seriously it is easier than HTML. All you need to do is include the JS and then start building your forms.
+Create forms compliant with ADA super fast and easily... seriously it is easier than vanilla HTML. All you need to do is include the JS and then start building your forms.
 
-It is fast, simple, lightweight (<20kb), there are absolutely NO CSS associated with is, and will allow you to build robust ADA-compliant forms with live error handling without ever touching a line of Javascript.
+It is fast, simple, lightweight (<20kb), there is absolutely no css requirements and you never need to touch any Javascript.
 
 ## What's available
 
-Supported input types:
+Supported input types (use other input types at your own risk!):
 - text
 - email
 - url
@@ -24,17 +24,17 @@ Supported validation rules:
 | Name | Example | Description |
 | --- | --- | --- |
 | Required | `rules="required"` | Some value must be preset |
-| Email | `rules="email"` | Value must match email regex. |
-| URL | `rules="url"` | Value must match url regex. |
+| Email | `rules="email"` | Value must match email regex |
+| URL | `rules="url"` | Value must match url regex |
 | Min | `rules="min:3"` | Value must be at least this number |
 | Max | `rules="max:3"` | Value cannot be more than this number |
 | Min Length | `rules="minLength:3"` | Value length must be at least this number |
 | Max Length | `rules="maxLength:3"` | Value length cannot be more than this number |
-| Same As | `rules="sameAs:inputName"` | This value must match the set value. This is nice for confirming passwords. |
-| Mime | `rules="mime:image/*"` | This file must match this mime type. This only works for file inputs. You can use a * as a wildcard. |
-| Date Before | `rules="dateBefore:1970-01-01"` | This value must be less than this date. This only works for date inputs. |
-| Date After | `rules="dateAfter:1970-01-01"` | This value must be greater than this date. This only works for date inputs. |
-| Regular Expression | `rules="regex:^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"` | This value must match the supplied regex. |
+| Same As | `rules="sameAs:inputName"` | This value must match the set value. This is nice for confirming passwords |
+| Mime | `rules="mime:image/*"` | This file must match this mime type. This only works for file inputs. You can use a * as a wildcard |
+| Date Before | `rules="dateBefore:1970-01-01"` | This value must be less than this date. This only works for date inputs |
+| Date After | `rules="dateAfter:1970-01-01"` | This value must be greater than this date. This only works for date inputs |
+| Regular Expression | `rules="regex:^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"` | This value must match the supplied regex |
 
 ## Usage
 
@@ -49,6 +49,14 @@ In your javascript file, simply include the library
 ```
 import 'ada-compliant-forms'
 ```
+
+Or just include the packaged file in your HTML
+
+```
+<script src="./ada-compliant-forms/public/main.js"></script>
+```
+
+That is it, you are done with Javascript.
 
 ## Anatomy
 
@@ -95,7 +103,6 @@ Use these within an `<ada-input type="select|checkbox|radio">` to create options
 </ada-form>
 
 
-
 <ada-form id="complex-form">
   <h2>Complex Example Form</h2>
   <ada-input label="Full Name" type="text" name="fullName" rules="required|minLength:2" placeholder="John Smith"></ada-input>
@@ -127,8 +134,7 @@ Use these within an `<ada-input type="select|checkbox|radio">` to create options
 </ada-form>
 
 
-
-<!-- handle collecting the information... or add method/action to the <ada-form> and let your server handle everything -->
+<!-- handle collecting the information -->
 <script>
   document.querySelector('#simple-form').addEventListener('submit', e => alert(`Hello ${e.detail.fullName}`)
 
@@ -146,7 +152,7 @@ Use these within an `<ada-input type="select|checkbox|radio">` to create options
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## Development
-Run `http-server ./index.html` to view of the test page
+Run `http-server ./index.html` to view the test page
 Run `npm run dev` to watch for chanages while working
 Run `npm run prod` to minify for production
 

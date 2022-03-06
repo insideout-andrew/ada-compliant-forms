@@ -3,11 +3,10 @@
   --white: #f9f9f9;
   --dark-gray: #353535;
   --gray: #666;
-  --blue: #2176AE;
-  --light-blue: #57B8FF;
-  --light-blue: #57B8FF;
-  --yellow: #FBB13C;
-  --orange: #FE6847;
+  --blue: #2176ae;
+  --light-blue: #57b8ff;
+  --yellow: #fbb13c;
+  --orange: #fe6847;
   --green: #1fb157;
 }
 
@@ -45,6 +44,10 @@ textarea {
   outline: none;
 }
 
+fieldset {
+  border: 2px solid var(--gray);
+}
+
 input[type="submit"] {
   border: 2px solid;
   font-size: 1.2rem;
@@ -54,7 +57,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 form {
@@ -70,14 +73,21 @@ ada-input {
   margin-bottom: 2rem;
 }
 
-ada-input.error input, 
+ada-input:focus-within input,
+ada-input:focus-within select,
+ada-input:focus-within textarea,
+ada-input:focus-within fieldset {
+  border: 2px solid var(--yellow);
+}
+
+ada-input.error input,
 ada-input.error select,
 ada-input.error textarea,
 ada-input.error fieldset {
   border: 2px solid var(--orange);
 }
 
-ada-input.valid input, 
+ada-input.valid input,
 ada-input.valid select,
 ada-input.valid textarea,
 ada-input.valid fieldset {

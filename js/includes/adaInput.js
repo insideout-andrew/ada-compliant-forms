@@ -77,6 +77,7 @@ class adaInput extends HTMLElement {
     input.value = this.getAttribute('value')    
     input.name = this.getAttribute('name')    
     input.id = `${this.id}-input`
+    this._addInputProperties(input)
     this.append(input)
 
     const rules = this.getAttribute('rules')
@@ -115,6 +116,7 @@ class adaInput extends HTMLElement {
     input.placeholder = this.getAttribute('placeholder') || ''
     input.value = this.getAttribute('value')    
     input.id = `${this.id}-input`
+    this._addInputProperties(input)
     this.append(input)
 
     if(input.type == 'hidden'){    
@@ -143,6 +145,7 @@ class adaInput extends HTMLElement {
     const input = document.createElement('select')
     input.name = this.getAttribute('name')
     input.id = `${this.id}-input`    
+    this._addInputProperties(input)
     this.append(input)    
     setTimeout(() => input.value = this.getAttribute('value'))
 
@@ -153,6 +156,18 @@ class adaInput extends HTMLElement {
     }    
   }
   
+  _addInputProperties(input){
+    let attrs = Array.prototype.slice.call(this.attributes)
+    if(attrs){
+      attrs.forEach(a => {
+        if(a.name.indexOf('input-') !== -1){
+          var newAttr = a.name.replace('input-', '')
+          input.setAttribute(newAttr, a.value)
+        }
+      })
+    }
+  }
+
   _isValid(){    
     const rules = this.getAttribute('rules')
     let isValid = true //prove me wrong once

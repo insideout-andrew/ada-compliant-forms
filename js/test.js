@@ -1,9 +1,9 @@
-import './main.js'
+import {
+  AdaForm,
+  AdaInput,
+  AdaOption
+} from './main.js'
 
-document.querySelector('#throw-error').addEventListener('click', e => {
-  e.preventDefault()
-  const emailInput = document.querySelector('ada-input[name="email"]')
-  emailInput.setError('Uh oh, that email doesn\'t work for some reason')
-})
-
-document.querySelector('#complex-form').addEventListener('submit', e => console.log(e.detail))
+customElements.define('ada-form', AdaForm, { extends: 'form' })
+customElements.define('ada-input', AdaInput)
+customElements.define('ada-option', AdaOption)

@@ -1,9 +1,9 @@
-import { adaForm } from './includes/adaForm'
-import { adaInput } from './includes/adaInput'
-import { adaOption } from './includes/adaOption'
+import { AdaForm } from './includes/AdaForm'
+import { AdaInput } from './includes/AdaInput'
+import { AdaOption } from './includes/AdaOption'
 
-{
-  customElements.define('ada-form', adaForm)
-  customElements.define('ada-input', adaInput)
-  customElements.define('ada-option', adaOption)  
+export {
+  AdaForm,
+  AdaInput,
+  AdaOption
 }

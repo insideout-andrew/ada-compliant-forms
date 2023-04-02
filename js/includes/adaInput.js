@@ -2,7 +2,7 @@ function generateID(){
   return `_${Math.random().toString(36).substr(2, 9)}`
 }
 
-class adaInput extends HTMLElement {
+class AdaInput extends HTMLElement {
   constructor(){
     super()
     this.loaded = false
@@ -75,7 +75,7 @@ class adaInput extends HTMLElement {
     const input = document.createElement('textarea')
     input.placeholder = this.getAttribute('placeholder') || ''
     input.value = this.getAttribute('value')    
-    input.name = this.getAttribute('name')    
+    input.name = this.getAttribute('name')
     input.id = `${this.id}-input`
     this._addInputProperties(input)
     this.append(input)
@@ -133,7 +133,13 @@ class adaInput extends HTMLElement {
     if(rules && rules.indexOf('required') != -1){
       input.setAttribute('aria-required', true)
       label.innerHTML = label.innerText + '<span aria-hidden="true">*</span>'
-    }    
+    }
+
+    if(input.type == "submit"){
+      input.removeAttribute('name')
+      input.removeAttribute('placeholder')
+      label.remove()
+    }        
   }
   
   _createSelect(){
@@ -223,7 +229,7 @@ class adaInput extends HTMLElement {
             break
           case 'sameAs':
             if(!this._validateSameAs(value, modifier)){
-              const confirmInputLabel = this.closest('ada-form').querySelector(`input[name="${modifier}"]`).parentNode.querySelector('label').innerText.replace('*', '').toLowerCase()
+              const confirmInputLabel = this.closest('form').querySelector(`input[name="${modifier}"]`).parentNode.querySelector('label').innerText.replace('*', '').toLowerCase()
               errors.push(`This field must match the ${confirmInputLabel} input`)
               isValid = false
             }
@@ -322,7 +328,7 @@ class adaInput extends HTMLElement {
   }
   
   _validateSameAs(value, checkAgainst){
-    const targetValue = this.closest('ada-form').querySelector(`input[name="${checkAgainst}"]`).value
+    const targetValue = this.closest('form').querySelector(`input[name="${checkAgainst}"]`).value
     return !value ? true : value == targetValue
   }
   
@@ -400,4 +406,4 @@ class adaInput extends HTMLElement {
   }
 }
 
-export { adaInput }
+export { AdaInput }

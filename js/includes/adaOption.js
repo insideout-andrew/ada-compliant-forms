@@ -2,7 +2,7 @@ function generateID(){
   return `_${Math.random().toString(36).substr(2, 9)}`
 }
 
-class adaOption extends HTMLElement {
+class AdaOption extends HTMLElement {
   constructor(){
     super()
     this.loaded = false
@@ -65,4 +65,4 @@ class adaOption extends HTMLElement {
   }
 }
 
-export { adaOption }
+export { AdaOption }

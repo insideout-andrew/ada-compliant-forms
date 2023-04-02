@@ -23,7 +23,28 @@
 </head>
 
 <body>
-  <ada-form id="complex-form">
+  <form is="ada-form" id="simple-form">
+    <ada-input
+      label="First Name"
+      type="text"
+      name="firstName"
+      rules="required|minLength:2"
+      placeholder="John"
+      description="Please enter your full name"
+    ></ada-input>
+    <ada-input
+      label="Last Name"
+      type="text"
+      name="lastName"
+      rules="required|minLength:2"
+      placeholder="Smith"
+      description="Please enter your last name"
+    ></ada-input>
+    <ada-input type="submit" value="Submit"></ada-input>
+  </form>
+
+
+  <form is="ada-form" id="complex-form">
     <ada-input
       label="Full Name"
       type="text"
@@ -33,10 +54,18 @@
       description="Please enter your full name"
     ></ada-input>
     <ada-input
+      label="Company"
+      type="text"
+      name="company"
+      rules="required"
+      placeholder="email@mail.com"
+    ></ada-input>
+    <ada-input
       label="Your Email"
       type="email"
       name="email"
       rules="required|email"
+      visible=""
       placeholder="email@mail.com"
     ></ada-input>
     <ada-input
@@ -137,8 +166,28 @@
     ></ada-input>
     <ada-input type="submit" value="Submit"></ada-input>
     <button class="button" id="throw-error">Add Custom Error</button>
-  </ada-form>
+  </form>
 
   <script src="./public/test.js"></script>
+
+  <script>
+    document.querySelector('#throw-error').addEventListener('click', e => {
+      e.preventDefault()
+      const emailInput = document.querySelector('ada-input[name="email"]')
+      emailInput.setError('Uh oh, that email doesn\'t work for some reason')
+    })
+
+    const form = document.querySelector('#complex-form')
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      if(form.isValidated){
+        console.log(form.toJSON())
+      } else {
+        console.log('Form not valid')
+      }
+    })
+  </script>
+
+
 </body>
 </html>

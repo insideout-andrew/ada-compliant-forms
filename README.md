@@ -50,28 +50,30 @@ Install in your project using npm
 npm install ada-compliant-forms
 ```
 
-In your javascript file, simply include the library
+In your javascript file, simply include the library and define the custom elements
 
 ```
-import 'ada-compliant-forms'
-```
+import {
+  AdaForm,
+  AdaInput,
+  AdaOption
+} from 'ada-compliant-forms'
 
-Or just include the packaged file in your HTML
-
-```
-<script src="./ada-compliant-forms/public/main.js"></script>
+customElements.define('ada-form', AdaForm, { extends: 'form' })
+customElements.define('ada-input', AdaInput)
+customElements.define('ada-option', AdaOption)
 ```
 
 That is it, you are done with Javascript.
 
 ## Anatomy
 
-### `<ada-form>`
+### `<form is="ada-form" id="simple-form">...</form>`
 
 Use this to wrap all inputs
 
 
-### `<ada-input>`
+### `<ada-input ...></ada-input>`
 
 Use these within an `<ada-form>` element to create inputs as needed.
 
@@ -97,7 +99,7 @@ Use these within an `<ada-input type="select|checkbox|radio">` to create options
 ## Examples
 
 ```html
-<ada-form id="simple-form">
+<form is="ada-form" id="simple-form">
   <h2>Simple Example Form</h2>
   <ada-input 
     label="Full Name" 
@@ -108,10 +110,10 @@ Use these within an `<ada-input type="select|checkbox|radio">` to create options
     placeholder="John Smith"
   ></ada-input>
   <ada-input type="submit" value="Submit"></ada-input>
-</ada-form>
+</form>
 
 
-<ada-form id="complex-form">
+<form is="ada-form" id="complex-form">
   <h2>Complex Example Form</h2>
   <ada-input
     label="Full Name"
@@ -206,7 +208,7 @@ Use these within an `<ada-input type="select|checkbox|radio">` to create options
     label="Date Before"
     type="date"
     name="date before"
-    rules="required|dateBefore:2022-03-7|dateAfter:2022-03-01"
+    rules="required|dateBefore:2022-03-7|dateAfter:2032-03-01"
     description="Please enter a date between March 1, 2022 and March, 7, 2022"
   ></ada-input>
   <ada-input
@@ -226,19 +228,28 @@ Use these within an `<ada-input type="select|checkbox|radio">` to create options
   ></ada-input>
   <ada-input type="submit" value="Submit"></ada-input>
   <button class="button" id="throw-error">Add Custom Error</button>
-</ada-form>
+</form>
 
 
-<!-- handle collecting the information -->
 <script>
-  document.querySelector('#simple-form').addEventListener('submit', e => alert(`Hello ${e.detail.fullName}`)
-
-  document.querySelector('#complex-form').addEventListener('submit', e => console.log(e.detail))
+  //do something custom when the form is valid and submitted
+  const form = document.querySelector('#complex-form')
   
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    if(form.isValidated){
+      console.log(form.toJSON())
+    } else {
+      console.log('Form not valid')
+    }
+  })
+  
+  //set a custom error
   document.querySelector('#throw-error').addEventListener('click', e => {
     e.preventDefault()
+    // do some API work
     const emailInput = document.querySelector('ada-input[name="email"]')
-    emailInput.setError('Uh oh, that email doesn\'t work for some reason')
+    emailInput.setError("Uh oh, that email doesn't work for some reason")
   })
 </script>
 ```
@@ -247,13 +258,13 @@ Use these within an `<ada-input type="select|checkbox|radio">` to create options
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## Development
-Run `http-server ./index.html` to view the test page
+Run `http-server ./` to view the test page
 
 Run `npm run dev` to watch for chanages while working
 
 Run `npm run prod` to minify for production
 
-Run `np` to publish to git and npm
+Run `np` to publish to npm
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

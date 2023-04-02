@@ -6,7 +6,7 @@ It is fast, simple, lightweight (<20kb), there is absolutely no css requirements
 
 ## Live Demo
 
-[View Demo Here](https://codesandbox.io/s/sharp-pasteur-dk1zht?file=/index.html)
+[View Demo Here](https://codepen.io/vickera/pen/qBMeOVe)
 
 ## What's available
 
